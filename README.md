@@ -73,13 +73,41 @@ Maybe we can get it to a state suitable for a PR on swift-markdown itself.
 
 An experiment for curious people. Work in progress.
 
+It is not entirely clear how useful this thing is. Is there really
+a usecase for building Markdown *in* Swift? 😃
+
+A goal is/was to not come up with protocols/structures specific
+to the resultBuilders, but to directly attach to the ones provided by
+swift-markdown already.
+
+If that would be internal to the Markdown module, a few hacky things
+could be dropped (i.e. because the API could be accessed).
+
+The implementation also doesn't have to resort to the type-safyness
+attached to SwiftUI style setups, because the swift-markdown 
+protocols do not use associated types.
+Also, it doesn't need two-way setups like `Binding`.
+
+Things missing:
+- [ ] table stuff (needs an own builder for scoping the contents), but could be similar to the macOS SwiftUI table
+- [ ] `List`
+- [ ] conditionals
+- [ ] finish the ForEach
+- [ ] an Environment maybe
+- [ ] also add an HTML resultBuilder?
+- [ ] many more things?
+
+Maybe more things from [SwiftBlocksUI](https://github.com/SwiftBlocksUI/SwiftBlocksUI)
+could be used (it generates Slack JSON block structures, but those 
+are essentially just fancy markdown).
+
 
 ### Usage in a Swift Package
 
 Example Package.swift:
 
 ```swift
-// swift-tools-version:5.0
+// swift-tools-version:5.3
 
 import PackageDescription
 
